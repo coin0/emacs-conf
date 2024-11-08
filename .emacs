@@ -1,11 +1,6 @@
 ;;(load-file "/Applications/Emacs.app/Contents/Resources/site-lisp/php-mode.el")
 ;;(require 'php-mode)
 
-;; modern C++11
-(add-to-list 'load-path "/home/linq/.emacs.d/cpp11")
-(require 'modern-cpp-font-lock)
-(modern-c++-font-lock-global-mode t)
-
 ;; cscope
 (load-file "/home/linq/.emacs.d/cscope/xcscope.el")
 
@@ -15,6 +10,17 @@
 ;(require 'auto-complete-config)
 ;;(ac-config-default)
 (autoload 'go-mode "go-mode" nil t)
+
+;; rust mode
+;; --------------
+(add-to-list 'load-path "/Users/linxiansheng/.emacs.d/rust-mode/")
+(autoload 'rust-mode "rust-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
+(add-hook 'rust-mode-hook
+          (lambda () (setq indent-tabs-mode nil)))
+(setq rust-format-on-save t)
+(add-hook 'rust-mode-hook
+          (lambda () (prettify-symbols-mode)))
 
 (setq c-default-style "linux")
 (defun my-c-mode-hook ()
@@ -31,11 +37,16 @@
 ;; javascript mode
 (setq js-indent-level 4) ;; indent spaces
 
+;; modern C++11
+(add-to-list 'load-path "/home/linq/.emacs.d/cpp11")
+(require 'modern-cpp-font-lock)
+(modern-c++-font-lock-global-mode t)
+
 ;; google C++11 style
-;(add-to-list 'load-path "/home/linq/.emacs.d/google-style") 
-;(require 'google-c-style)
-;(add-hook 'c-mode-common-hook 'google-set-c-style) 
-;(add-hook 'c-mode-common-hook 'google-make-newline-indent) 
+(add-to-list 'load-path "/home/linxiansheng/.emacs.d/google-style")
+(require 'google-c-style)
+(add-hook 'c-mode-common-hook 'google-set-c-style)
+(add-hook 'c-mode-common-hook 'google-make-newline-indent)
 
 (global-set-key [(control h)] 'backward-delete-char-untabify)
 
